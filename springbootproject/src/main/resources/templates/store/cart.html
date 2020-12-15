@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center">Super Cool Mega Awesome Store</h1>
+        <br/>
+        <hr>
+        <br/>
+
+        <h1 style="text-align: center">Your Cart</h1>
+
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="tempOrder : ${order}">
+
+                <td th:text="${tempOrder.product_name}"></td>
+                <td th:text="${tempOrder.quantity}"></td>
+                <td th:text="${tempOrder.price}"></td>
+                <td>
+                    <a th:href="@{/cart/delete(itemId=${tempOrder.id})}" class="btn btn-danger btn-sm"
+                       onclick="if(!(confirm('Are you sure you want to remove this item?'))) return false">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Your Total</th>
+                    <th>Checkout</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:with="temp=${total}">
+                    <td th:text="${total}"> </td>
+                    <td style="text-align: center">
+                        <a th:href="@{/cart/ordercomplete}" class="btn btn-primary btn-sm mb-3">Checkout</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a th:href="@{/store/list}" class="btn btn-primary btn-sm mb-3">Go to front page</a>
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+.funny{
+    font-style: italic;
+    color: green;
+}
+
+#test{
+    color: red;
+    font-style: italic;
+}
+
+.kukhora{
+    color: red;
+    background: green;
+}
+
+body{
+    background: red;
+}
